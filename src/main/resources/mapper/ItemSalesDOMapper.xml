@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wy.dao.ItemSalesDOMapper">
+  <resultMap id="BaseResultMap" type="com.wy.dataobject.ItemSalesDO">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="limit_num" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="sales" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="item_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, limit_num, sales, item_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_item_sales
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_item_sales
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByItemId" parameterType="java.lang.Long">
+    delete from tb_item_sales
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.wy.dataobject.ItemSalesDO">
+    insert into tb_item_sales (id, limit_num, sales, 
+      item_id)
+    values (#{id,jdbcType=BIGINT}, #{limitNum,jdbcType=BIGINT}, #{sales,jdbcType=BIGINT}, 
+      #{itemId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wy.dataobject.ItemSalesDO">
+    insert into tb_item_sales
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="limitNum != null">
+        limit_num,
+      </if>
+      <if test="sales != null">
+        sales,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="limitNum != null">
+        #{limitNum,jdbcType=BIGINT},
+      </if>
+      <if test="sales != null">
+        #{sales,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wy.dataobject.ItemSalesDO">
+    update tb_item_sales
+    <set>
+      <if test="limitNum != null">
+        limit_num = #{limitNum,jdbcType=BIGINT},
+      </if>
+      <if test="sales != null">
+        sales = #{sales,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wy.dataobject.ItemSalesDO">
+    update tb_item_sales
+    set limit_num = #{limitNum,jdbcType=BIGINT},
+      sales = #{sales,jdbcType=BIGINT},
+      item_id = #{itemId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
