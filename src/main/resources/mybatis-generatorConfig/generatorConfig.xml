@@ -133,6 +133,13 @@
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
+<!--        <table tableName="video_user_info" domainObjectName="VideoUserInfoDO"-->
+<!--                       enableCountByExample="false" enableUpdateByExample="false"-->
+<!--                       enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--                       selectByExampleQueryId="false">-->
+<!--        </table>-->
+
+
 
 
     </context>

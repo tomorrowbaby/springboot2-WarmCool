@@ -8,9 +8,7 @@ package com.wy.common.error;
 
 public class BusinessException extends Exception implements CommonError{
 
-
     private CommonError commonError;
-
 
     //直接接受BusinessException传参构造业务异常
     public BusinessException(CommonError commonError){

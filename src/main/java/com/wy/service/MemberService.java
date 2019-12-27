@@ -121,6 +121,14 @@ public interface MemberService {
      * @return
      */
     MemberModel setMemberPassword(Long id,String password) throws BusinessException;
+
+
+    /**
+     * 通过手机号码查询用户信息
+     * @param phone
+     * @return
+     */
+    MemberModel selectMemberInfoByPhone(String phone) throws BusinessException;
 }
 
 

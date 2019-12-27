@@ -43,6 +43,7 @@ import ytx.org.apache.http.util.EntityUtils;
 import com.cloopen.rest.sdk.utils.CcopHttpClient;
 import com.cloopen.rest.sdk.utils.DateUtil;
 import com.cloopen.rest.sdk.utils.EncryptUtil;
+import com.cloopen.rest.sdk.utils.LoggerUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -218,7 +219,7 @@ public class CCPRestSDK {
 					.getBytes("UTF-8")));
 			requestBody.setContentLength(requsetbody.getBytes("UTF-8").length);
 			httppost.setEntity(requestBody);
-			HttpResponse response = httpclient.execute(httppost);	
+			HttpResponse response = httpclient.execute(httppost);
 			
 			status = response.getStatusLine().getStatusCode();
 			
