@@ -27,13 +27,13 @@ import java.util.*;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    @Autowired
+    @Autowired(required=false)
     private MemberDOMapper memberDOMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private PasswordDOMapper passwordDOMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private ValidatorImpl validator;
 
     @Override
@@ -302,6 +302,21 @@ public class MemberServiceImpl implements MemberService {
         if (row > 0) {
             memberModel.setReturnResult("success");
         }
+        return memberModel;
+    }
+
+    @Override
+    public MemberModel selectMemberInfoByPhone(String phone) throws BusinessException {
+        if (StringUtils.isEmpty(phone)) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+
+        MemberDO memberDO = memberDOMapper.selectMemberInfoByPhone(phone);
+        MemberModel memberModel = this.convertFromMemberDO(memberDO);
+
+        memberModel.setReturnResult("success");
+
+
         return memberModel;
     }
 

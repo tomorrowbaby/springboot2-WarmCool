@@ -1,7 +1,7 @@
 package com.wy.config;
 
 /**
- * 服务器地址配置
+ * 文件服务器地址配置
  * @author wangyu
  * @date 2019/8/6
  */

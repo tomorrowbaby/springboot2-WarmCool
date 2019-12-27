@@ -18,6 +18,9 @@ public enum EmBusinessError implements CommonError{
     SERVER_CLOSE_CONNECTION_ERROR(10003,"文件服务器关闭连接错误"),
 
     MYSQL_RUN_ERROR(10005,"数据库运行异常"),
+    REDIS_RUN_ERROR(10006,"Redis运行错误"),
+    Message_SERVICE_ERROR(10007,"短信服务器错误"),
+
 
 
 

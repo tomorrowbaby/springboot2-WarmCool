@@ -18,7 +18,7 @@ public class PanelModel implements Serializable {
 
     /**
      * 视图版块类型
-     * 0轮播图 1板块种类一 2板块种类二 3板块种类三
+     * 0轮播图 1.板块种类一 2.板块种类二 3.板块种类三
      */
     private Integer type;
 

@@ -27,6 +27,9 @@ public interface MemberDOMapper {
     //查询所有回收站会员数量
     Long selectAllRemoveMemberCount();
 
+    //通过手机号获取会员信息
+    MemberDO selectMemberInfoByPhone(String phone);
+
 
 
 

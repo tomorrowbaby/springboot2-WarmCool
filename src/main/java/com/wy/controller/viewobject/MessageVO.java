@@ -1,4 +1,8 @@
 package com.wy.controller.viewobject;
 
-public class MessageVO {
+
+import java.io.Serializable;
+
+public class MessageVO implements Serializable {
+
 }

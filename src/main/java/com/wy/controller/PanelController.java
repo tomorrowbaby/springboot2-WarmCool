@@ -26,7 +26,6 @@ public class PanelController extends BaseController{
     public CommonReturnType getIndexPanelList(){
 
 
-
         return null;
 
     }

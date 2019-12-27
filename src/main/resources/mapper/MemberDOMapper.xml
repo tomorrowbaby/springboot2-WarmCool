@@ -55,6 +55,17 @@
     </if>
   </select>
 
+  <select id="selectMemberInfoByPhone" parameterType="String" resultMap="BaseResultMap">
+    select *
+    from tb_member
+    where
+    <if test="phone != null and phone != ''">
+      phone = #{phone}
+    </if>
+
+  </select>
+
+
   <select id="selectRemovePageListByMember" parameterType="String" resultMap="BaseResultMap">
     select *
     from tb_member

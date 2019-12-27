@@ -36,19 +36,19 @@ import java.util.List;
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    @Autowired
+    @Autowired(required=false)
     private ItemDOMapper itemDOMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private ItemStockDOMapper itemStockDOMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private ItemSalesDOMapper itemSalesDOMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private ItemDescDOMapper itemDescDOMapper;
 
-    @Autowired
+    @Autowired(required=false)
     private ValidatorImpl validator;
 
     @Override
