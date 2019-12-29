@@ -23,7 +23,7 @@ public interface VideoUserService {
      * @param phone
      * @return
      */
-    VideoUserModel validateVideoUserIsExistByPhone(String phone);
+    VideoUserModel validateVideoUserIsExistByPhone(String phone) throws BusinessException;
 
 
 }

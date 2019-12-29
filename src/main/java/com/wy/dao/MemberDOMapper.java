@@ -28,7 +28,7 @@ public interface MemberDOMapper {
     Long selectAllRemoveMemberCount();
 
     //通过手机号获取会员信息
-    MemberDO selectMemberInfoByPhone(String phone);
+    MemberDO selectMemberInfoByPhone(@Param("phone") String phone);
 
 
 
