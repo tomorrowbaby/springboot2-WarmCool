@@ -15,4 +15,5 @@ public class EncryptionUtil {
         }
          return new BCryptPasswordEncoder().encode(password);
     }
+
 }

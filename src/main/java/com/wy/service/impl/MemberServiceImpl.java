@@ -133,6 +133,7 @@ public class MemberServiceImpl implements MemberService {
             memberDOMapper.insertSelective(memberDO);
             passwordDO.setMemberId(memberDO.getId());
             row = passwordDOMapper.insertSelective(passwordDO);
+            memberModel.setId(memberDO.getId());
         }catch (Exception e){
             throw new BusinessException(EmBusinessError.MYSQL_RUN_ERROR);
         }
@@ -332,7 +333,7 @@ public class MemberServiceImpl implements MemberService {
 
     private PasswordDO convertFromMemberModelToPassword(MemberModel memberModel){
         if (memberModel == null) {
-            return  null;
+            return  new PasswordDO();
         }
         PasswordDO passwordDO = new PasswordDO();
         passwordDO.setMemberId(memberModel.getId());

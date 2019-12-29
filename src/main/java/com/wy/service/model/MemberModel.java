@@ -19,8 +19,6 @@ public class MemberModel implements Serializable {
     private Long id;
 
     @NotNull(message = "用户名为必填项")
-    @Max(10)
-    @Min(2)
     private String username;
 
     @NotNull(message = "用户性别为必填项")

@@ -39,7 +39,7 @@ public class VideoUserServiceImpl implements VideoUserService {
     }
 
     @Override
-    public VideoUserModel validateVideoUserIsExistByPhone(String phone) {
+    public VideoUserModel validateVideoUserIsExistByPhone(String phone) throws BusinessException {
         if (StringUtils.isEmpty(phone)) {
             return null;
         }
@@ -47,12 +47,13 @@ public class VideoUserServiceImpl implements VideoUserService {
         VideoUserInfoDO videoUserInfoDO = null;
         try {
             videoUserInfoDO = videoUserInfoDOMapper.selectByPhone(phone);
-        }catch (Exception e) {
-
+        } catch (Exception e) {
+            throw new BusinessException(EmBusinessError.MYSQL_RUN_ERROR);
         }
+
         VideoUserModel videoUserModel = this.convertFromVideoUserInfoDO(videoUserInfoDO);
         if (videoUserModel == null) {
-            videoUserModel.setReturnResult("false");
+            return new VideoUserModel();
         }else {
             videoUserModel.setReturnResult("true");
         }

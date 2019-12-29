@@ -61,7 +61,8 @@ public class MessageController extends BaseController{
         }catch (Exception e) {
             throw new BusinessException(EmBusinessError.Message_SERVICE_ERROR);
         }
-
         return CommonReturnType.create(optCode,"success");
     }
+
+
 }
