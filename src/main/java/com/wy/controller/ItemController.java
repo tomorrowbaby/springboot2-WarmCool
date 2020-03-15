@@ -4,8 +4,11 @@ import com.wy.common.error.BusinessException;
 import com.wy.common.error.EmBusinessError;
 import com.wy.common.response.CommonReturnPageInfo;
 import com.wy.common.response.CommonReturnType;
+import com.wy.service.ESItemService;
 import com.wy.service.ItemService;
+import com.wy.service.model.ESModel;
 import com.wy.service.model.ItemModel;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,9 @@ public class ItemController extends BaseController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private ESItemService esItemService;
 
     /**
      * 查询商品数量
@@ -216,10 +222,29 @@ public class ItemController extends BaseController {
         itemModel.setStock(itemModel.getNum().longValue());
         ItemModel returnItemModel = itemService.updateItem(itemModel);
         if ("success".equals(returnItemModel.getReturnResult())) {
+
             return CommonReturnType.create("修改成功！");
         }
+
+
+
+
         return CommonReturnType.create(returnItemModel.getReturnResult(),"fail");
     }
 
+    @RequestMapping(value = "/es",method = RequestMethod.GET)
+    @ApiOperation(value = "获取ES信息")
+    public CommonReturnType getESInfo() throws BusinessException {
 
+        ESModel esInfo= esItemService.getEsInfo();
+        return CommonReturnType.createData(esInfo);
+    }
+
+    @RequestMapping(value = "/importIndex",method = RequestMethod.GET)
+    @ApiOperation(value = "导入商品索引至ES")
+    public CommonReturnType importIndex() throws BusinessException {
+
+        esItemService.importAllItems();
+        return CommonReturnType.create(null);
+    }
 }

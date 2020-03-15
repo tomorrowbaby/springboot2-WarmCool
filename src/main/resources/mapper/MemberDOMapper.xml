@@ -29,6 +29,13 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
+  <select id="selectMemberInfoByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from tb_member
+    where username = #{username}
+  </select>
+
   <select id="selectPageListByMember" parameterType="String" resultMap="BaseResultMap">
     select *
     from tb_member

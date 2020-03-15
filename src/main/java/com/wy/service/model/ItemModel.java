@@ -18,8 +18,6 @@ public class ItemModel implements Serializable {
 
     private Long id;
 
-    @Max(value = 10,message = "用户名不能高于10个字符")
-    @Min(value = 2,message = "用户名不能低于2个字符")
     private String title;
 
     private String sellPoint; //卖点
@@ -46,11 +44,13 @@ public class ItemModel implements Serializable {
     private Long stock;     //库存
 
     @NotNull(message = "商品详情必须填写")
-    private String description;
+    private String detail;
 
     private Long count;
 
-    public Integer num;
+    private Integer num;
+
+    private Integer limitNum;
 
     private String returnResult;
 
@@ -66,15 +66,6 @@ public class ItemModel implements Serializable {
         return count;
     }
 
-
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer nun) {
-        this.num = num;
-    }
 
     public void setCount(Long count) {
         this.count = count;
@@ -168,11 +159,27 @@ public class ItemModel implements Serializable {
         this.stock = stock;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Integer getLimitNum() {
+        return limitNum;
+    }
+
+    public void setLimitNum(Integer limitNum) {
+        this.limitNum = limitNum;
     }
 }

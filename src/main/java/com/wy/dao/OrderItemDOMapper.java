@@ -17,4 +17,6 @@ public interface OrderItemDOMapper {
     int updateByPrimaryKeySelective(OrderItemDO record);
 
     int updateByPrimaryKey(OrderItemDO record);
+
+    int deleteByOrderId(String orderId);
 }

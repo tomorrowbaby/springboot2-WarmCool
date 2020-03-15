@@ -295,7 +295,7 @@ public class MemberServiceImpl implements MemberService {
 
         int row = 0;
         try{
-            row = passwordDOMapper.updateByPrimaryKeySelective(passwordDO);
+            row = passwordDOMapper.updateByMemberId(passwordDO);
         }catch (Exception e) {
             throw new BusinessException(EmBusinessError.MYSQL_RUN_ERROR);
         }

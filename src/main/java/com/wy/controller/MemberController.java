@@ -3,15 +3,15 @@ package com.wy.controller;
 import com.wy.common.error.BusinessException;
 import com.wy.common.error.EmBusinessError;
 import com.wy.common.response.CommonReturnType;
-import com.wy.config.ServerUrlConfig;
 import com.wy.controller.viewobject.MemberVO;
 import com.wy.service.MemberService;
 import com.wy.common.response.CommonReturnPageInfo;
+import com.wy.service.manager.QiNiu;
 import com.wy.service.model.MemberModel;
 import com.wy.utils.EncryptionUtil;
-import com.wy.utils.FileUploadUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +27,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/member")
 @CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class MemberController extends BaseController{
 
     @Autowired
@@ -66,6 +67,7 @@ public class MemberController extends BaseController{
      */
     @RequestMapping(value = "/list" ,method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAuthority('ADMIN')")
     public CommonReturnPageInfo getMemberList(Integer draw, //显示当前页数，默认为1
                                               Integer start,//分页开始值
                                               Integer length, //每页显示数量
@@ -91,7 +93,7 @@ public class MemberController extends BaseController{
         if(searchKey != null && searchKey.isEmpty()){
             searchKey = search;
         }
-        CommonReturnPageInfo commonReturnPageInfo = new CommonReturnPageInfo();
+        CommonReturnPageInfo commonReturnPageInfo = null;
         //获取分页信息
         commonReturnPageInfo = memberService.getMemberListAndPageInfo(start,length,searchKey,sortByColumn,orderDir,minDate,maxDate);
 
@@ -163,12 +165,9 @@ public class MemberController extends BaseController{
             if (memberModel == null) {
                 return CommonReturnType.create("核实信息是否输入","fail");
             }
-            // 文件转发到图片服务器
+            // 文件转发到QINIU
             if (part != null){
-                FileUploadUtil fileUploadUtil = new FileUploadUtil();
-                String file = fileUploadUtil.imageFileUpload(part, ServerUrlConfig.ImageFileServerIP,
-                        ServerUrlConfig.FtpName,ServerUrlConfig.FtpPassword);
-                memberModel.setFile(file);
+                String image = QiNiu.upload(part);
             }
 
             //地址信息拼接
@@ -230,10 +229,8 @@ public class MemberController extends BaseController{
 
         // 文件转发到图片服务器
         if (part != null) {
-            FileUploadUtil fileUploadUtil = new FileUploadUtil();
-            String file = fileUploadUtil.imageFileUpload(part, ServerUrlConfig.ImageFileServerIP,
-                    ServerUrlConfig.FtpName, ServerUrlConfig.FtpPassword);
-            memberModel.setFile(file);
+            String image = QiNiu.upload(part);
+            memberModel.setFile(image);
         }
 
         if (memberService.updateMemberInfo(memberModel).getReturnResult() == "success") {

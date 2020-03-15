@@ -22,7 +22,9 @@ import java.util.Random;
 
 
 /**
- * 文件上传工具类
+ * 描述：FTP文件上传工具类
+ * @author wangyu
+ * @date 2019/11/10
  */
 
 public class FileUploadUtil {
@@ -75,5 +77,7 @@ public class FileUploadUtil {
         }
         return fileName.toString();
     }
+
+
 
 }

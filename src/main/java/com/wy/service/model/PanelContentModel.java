@@ -3,6 +3,7 @@ package com.wy.service.model;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 描述：版块详情
@@ -18,6 +19,19 @@ public class PanelContentModel implements Serializable {
 
     private Long productId;
 
+    private Integer type;
+
+    /**
+     * 关联商品信息
+     */
+    private BigDecimal salePrice;
+
+    private String productName;
+
+    private String subTitle;
+
+    private String productImageBig;
+
     private Integer sortOrder;
 
     private String fullUrl;
@@ -31,6 +45,57 @@ public class PanelContentModel implements Serializable {
     private DateTime updateTime;
 
     private DateTime createTime;
+
+
+    private String returnResult;
+
+    public String getReturnResult() {
+        return returnResult;
+    }
+
+    public void setReturnResult(String returnResult) {
+        this.returnResult = returnResult;
+    }
+
+    public BigDecimal getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    public String getProductImageBig() {
+        return productImageBig;
+    }
+
+    public void setProductImageBig(String productImageBig) {
+        this.productImageBig = productImageBig;
+    }
 
     public Integer getId() {
         return id;

@@ -1,28 +1,22 @@
 package com.wy.controller;
 
 
-import com.cloopen.rest.sdk.utils.EncryptUtil;
 import com.wy.common.error.BusinessException;
 import com.wy.common.error.EmBusinessError;
 import com.wy.common.response.CommonReturnType;
 import com.wy.service.MemberService;
-import com.wy.service.model.MemberModel;
-import com.wy.utils.EncryptionUtil;
-import com.wy.utils.MessageUtil;
+import com.wy.service.manager.Message;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.TimeoutUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 描述：短信登录验证
@@ -57,7 +51,7 @@ public class MessageController extends BaseController{
 
         //发送验证码
         try {
-            MessageUtil.sendMessageByMobilePhone(mobile,optCode);
+            Message.sendMessageByMobilePhone(mobile,optCode);
         }catch (Exception e) {
             throw new BusinessException(EmBusinessError.Message_SERVICE_ERROR);
         }

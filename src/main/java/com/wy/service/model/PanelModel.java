@@ -16,6 +16,10 @@ public class PanelModel implements Serializable {
 
     private String name;
 
+    private String icon;
+
+    private Boolean open;
+
     /**
      * 视图版块类型
      * 0轮播图 1.板块种类一 2.板块种类二 3.板块种类三
@@ -49,9 +53,39 @@ public class PanelModel implements Serializable {
 
     private DateTime updateTime;
 
+    private String returnResult;
 
+    public String getReturnResult() {
+        return returnResult;
+    }
 
+    public void setReturnResult(String returnResult) {
+        this.returnResult = returnResult;
+    }
 
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public Integer getId() {
         return id;

@@ -11,6 +11,8 @@ import java.util.List;
 
 public class CommonReturnPageInfo {
 
+    private String status;
+
     private List<?> data;
 
     private int draw;
@@ -51,6 +53,13 @@ public class CommonReturnPageInfo {
         this.data = data;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 
 

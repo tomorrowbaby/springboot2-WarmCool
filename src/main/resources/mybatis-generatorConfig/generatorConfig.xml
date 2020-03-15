@@ -77,6 +77,8 @@
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
+
+
 <!--        <table tableName="tb_password" domainObjectName="PasswordDO"-->
 <!--                       enableCountByExample="false" enableUpdateByExample="false"-->
 <!--                       enableDeleteByExample="false" enableSelectByExample="false"-->
@@ -133,14 +135,49 @@
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
-<!--        <table tableName="video_user_info" domainObjectName="VideoUserInfoDO"-->
+<!--                <table tableName="tb_express" domainObjectName="ExpressDO"-->
+<!--                       enableCountByExample="false" enableUpdateByExample="false"-->
+<!--                       enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--                       selectByExampleQueryId="false">-->
+<!--                </table>-->
+
+<!--                        <table tableName="tb_panel" domainObjectName="PanelDO"-->
+<!--                               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--                               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--                               selectByExampleQueryId="true">-->
+<!--                        </table>-->
+
+
+<!--        <table tableName="tb_panel_content" domainObjectName="PanelContentDO"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--        </table>-->
+
+<!--        <table tableName="role" domainObjectName="RoleDO"-->
 <!--                       enableCountByExample="false" enableUpdateByExample="false"-->
 <!--                       enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--                       selectByExampleQueryId="false">-->
 <!--        </table>-->
 
+<!--        <table tableName="role_perm" domainObjectName="RolePermDO"-->
+<!--           enableCountByExample="false" enableUpdateByExample="false"-->
+<!--           enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--           selectByExampleQueryId="false">-->
+<!--        </table>-->
+
+<!--        <table tableName="permission" domainObjectName="PermissionDO"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
 
 
+<!--                                <table tableName="member_role" domainObjectName="MemberRoleDO"-->
+<!--                                       enableCountByExample="true" enableUpdateByExample="true"-->
+<!--                                       enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--                                       selectByExampleQueryId="true">-->
+<!--                                </table>-->
 
     </context>
 </generatorConfiguration>

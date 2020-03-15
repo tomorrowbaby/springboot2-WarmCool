@@ -1,12 +1,12 @@
 package com.wy.controller;
 
-import com.sun.deploy.net.HttpResponse;
+
 import com.wy.common.error.BusinessException;
 import com.wy.common.error.EmBusinessError;
 import com.wy.common.response.CommonReturnType;
 import com.wy.common.response.KindeditorImageReturnType;
-import com.wy.config.ServerUrlConfig;
-import com.wy.utils.FileUploadUtil;
+import com.wy.common.config.ServerUrlConfig;
+import com.wy.service.manager.QiNiu;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +39,9 @@ public class ImageUploadController {
 
         String imageName = null;
         try {
-            imageName = FileUploadUtil.imageFileUpload(file, ServerUrlConfig.ImageFileServerIP,ServerUrlConfig.FtpName,ServerUrlConfig.FtpPassword);
+//            imageName = FileUploadUtil.imageFileUpload(file, ServerUrlConfig.ImageFileServerIP,ServerUrlConfig.FtpName,ServerUrlConfig.FtpPassword);
+
+                imageName = QiNiu.upload(file);
         }catch (Exception e) {
             imageName = null;
         }
@@ -64,7 +66,7 @@ public class ImageUploadController {
 
        String fileName  ;
         try{
-            fileName = FileUploadUtil.imageFileUpload(file,ServerUrlConfig.ImageFileServerIP,ServerUrlConfig.FtpName,ServerUrlConfig.FtpPassword);
+            fileName = QiNiu.upload(file);
         }catch (Exception e) {
             e.printStackTrace();
             fileName = "fail";

@@ -2,6 +2,7 @@ package com.wy.service;
 
 import com.wy.common.error.BusinessException;
 import com.wy.common.response.CommonReturnPageInfo;
+import com.wy.service.model.ESModel;
 import com.wy.service.model.ItemModel;
 
 import java.util.List;
@@ -37,4 +38,5 @@ public interface ItemService {
 
     //通过Id获取商品
     ItemModel getItemById(Long id) throws BusinessException;
+
 }

@@ -33,10 +33,73 @@
     from tb_order
     where order_id = #{orderId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectListByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_order
+    <where>
+      <if test="searchKey != null and searchKey != ''">
+        (order_id like #{searchKey}
+        or
+        payment like #{searchKey}
+        or
+        buyer_nick like #{searchKey}
+        or
+        shipping_code like #{searchKey}
+        or
+        buyer_message like #{searchKey}
+        or
+        create_time like #{searchKey}
+        or
+        payment_time like #{searchKey}
+        or
+        end_time like #{searchKey}
+        or
+        close_time like #{searchKey}
+        )
+
+      </if>
+    </where>
+      <if test="sortColumn != null and sortColumn != '' and sortBy != null and sortBy != ''">
+      order by
+      ${sortColumn}
+      ${sortBy}
+    </if>
+
+
+  </select>
+
+
+  <select id="selectCount" resultType="Long">
+    select count(*)
+    from tb_order
+  </select>
+  <select id="selectOrderChart" resultType="com.wy.dataobject.OrderChartDataDO">
+    select
+    sum(payment) money,DATE(create_time) time
+    FROM tb_order
+    WHERE
+    create_time BETWEEN #{startTime} and #{endTime}
+    and status = 4
+    GROUP BY DAY(create_time)
+  </select>
+  <select id="selectOrderChartByYear" resultType="com.wy.dataobject.OrderChartDataDO">
+    select
+    sum(payment) money,DATE(create_time) time
+    FROM tb_order
+    WHERE
+    YEAR(create_time) = #{year}
+    and status = 4
+    GROUP BY MONTH(create_time)
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_order
     where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
+
+
+
   <insert id="insert" parameterType="com.wy.dataobject.OrderDO">
     insert into tb_order (order_id, payment, payment_type, 
       post_fee, status, create_time, 
@@ -234,4 +297,5 @@
       buyer_comment = #{buyerComment,jdbcType=BIT}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
+
 </mapper>

@@ -70,5 +70,5 @@ public interface MemberDOMapper {
     Page<MemberDO> selectRemovePageListByMember(String searchKey,  String minDate, String maxDate,String orderCol,  String orderDir);
 
 
-
+    MemberDO selectMemberInfoByUsername(@Param("username") String username);
 }

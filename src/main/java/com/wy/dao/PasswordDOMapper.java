@@ -2,6 +2,7 @@ package com.wy.dao;
 
 import com.wy.dataobject.PasswordDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface PasswordDOMapper {
@@ -16,4 +17,11 @@ public interface PasswordDOMapper {
     int updateByPrimaryKeySelective(PasswordDO record);
 
     int updateByPrimaryKey(PasswordDO record);
+
+
+    PasswordDO selectByMemberId(Long memberId);
+
+    int updateByMemberId(PasswordDO passwordDO);
+
+    PasswordDO selectByUserId(@Param("userId") Integer userId);
 }

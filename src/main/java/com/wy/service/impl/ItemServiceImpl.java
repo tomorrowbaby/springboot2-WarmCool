@@ -12,6 +12,7 @@ import com.wy.dao.ItemStockDOMapper;
 import com.wy.dataobject.ItemDO;
 import com.wy.dataobject.ItemDescDO;
 import com.wy.dataobject.ItemStockDO;
+import com.wy.service.ESItemService;
 import com.wy.service.ItemService;
 import com.wy.service.model.ItemModel;
 import com.wy.validator.ValidationResult;
@@ -50,6 +51,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired(required=false)
     private ValidatorImpl validator;
+
+
+    @Autowired
+    private ESItemService esItemService;
 
     @Override
     public ItemModel getItemCountByState(Integer state) throws BusinessException {
@@ -115,6 +120,7 @@ public class ItemServiceImpl implements ItemService {
 
         ItemStockDO itemStockDO = new ItemStockDO();
         ItemDescDO itemDescDO = new ItemDescDO();
+        itemDescDO.setItemDesc(itemModel.getDetail());
         itemStockDO.setStock(itemModel.getStock());
 
         int rows = 0;
@@ -132,6 +138,9 @@ public class ItemServiceImpl implements ItemService {
 
         if (rows > 0) {
             itemModel.setReturnResult("success");
+
+
+
         }else if (stockRows <= 0) {
             itemModel.setReturnResult("商品库存添加失败！");
         }else {
@@ -171,6 +180,10 @@ public class ItemServiceImpl implements ItemService {
         }
 
         if (rows > 0) {
+
+            //更新索引
+            esItemService.refreshItem(0,itemModel.getId());
+
             itemModel.setReturnResult("success");
         }else {
             itemModel.setReturnResult("修改失败");
@@ -200,7 +213,12 @@ public class ItemServiceImpl implements ItemService {
             throw new BusinessException(EmBusinessError.MYSQL_RUN_ERROR);
         }
         if (rows > 0) {
+
+            //更新索引
+            esItemService.refreshItem(1,itemId);
+
             itemModel.setReturnResult("success");
+
         } else {
             itemModel.setReturnResult("删除的用户信息不存在！");
         }
@@ -278,6 +296,7 @@ public class ItemServiceImpl implements ItemService {
             itemDO.setUpdated(itemModel.getUpdated().toDate());
         }
 
+
         return itemDO;
     }
 
@@ -325,8 +344,8 @@ public class ItemServiceImpl implements ItemService {
         if (itemModel.getId() != null){
             itemDescDO.setItemId(itemModel.getId());
         }
-        if (itemModel.getDescription() != null) {
-            itemDescDO.setItemDesc(itemModel.getDescription());
+        if (itemModel.getDetail() != null) {
+            itemDescDO.setItemDesc(itemModel.getDetail());
         }
          if (itemModel.getCreated().toDate() != null) {
              itemDescDO.setCreated(itemModel.getCreated().toDate());

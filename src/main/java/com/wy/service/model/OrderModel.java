@@ -111,6 +111,20 @@ public class OrderModel implements Serializable {
      */
     private Boolean buyerComment;
 
+    /**
+     * 返回success为成功
+     * 其他则为异常信息
+     */
+    private String returnResult;
+
+    public String getReturnResult() {
+        return returnResult;
+    }
+
+    public void setReturnResult(String returnResult) {
+        this.returnResult = returnResult;
+    }
+
     public String getOrderId() {
         return orderId;
     }

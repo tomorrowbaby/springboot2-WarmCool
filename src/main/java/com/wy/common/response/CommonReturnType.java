@@ -15,7 +15,25 @@ public class CommonReturnType {
 
     private Object result;
 
+    private Object data;
 
+    private Object message;
+
+    public Object getMessage() {
+        return message;
+    }
+
+    public void setMessage(Object message) {
+        this.message = message;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
 
     public String getStatus() {
         return status;
@@ -42,6 +60,20 @@ public class CommonReturnType {
     public static CommonReturnType create(Object result,String status){
         CommonReturnType type = new CommonReturnType() ;
         type.setResult(result);
+        type.setStatus(status);
+        return type;
+    }
+
+    public static CommonReturnType createData(Object data){
+        CommonReturnType commonReturnType = new CommonReturnType();
+        commonReturnType.setData(data);
+        commonReturnType.setStatus("success");
+        return commonReturnType;
+    }
+
+    public static CommonReturnType createMessage(Object message,String status) {
+        CommonReturnType type = new CommonReturnType() ;
+        type.setMessage(message);
         type.setStatus(status);
         return type;
     }

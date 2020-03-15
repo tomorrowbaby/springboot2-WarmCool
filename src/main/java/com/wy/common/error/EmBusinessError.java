@@ -37,7 +37,22 @@ public enum EmBusinessError implements CommonError{
 
 
     //以4开头为交易错误
-    STOCK_NOT_ENOUGH(40001,"库存不够了")
+    STOCK_NOT_ENOUGH(40001,"库存不够了"),
+
+
+
+    //以5开头为订单错误
+    ORDER_DELETE_ERROR(50001,"订单信息删除失败"),
+    ORDER_SHIPPING_DELETE_ERROR(50002,"快递信息删除失败"),
+    ORDER_ITEM_DELETE_ERROR(50003,"订单商品信息删除失败"),
+
+
+    //以6开头快递
+
+
+    //以9开头ES错误
+    ES_IMPORT_FAIL(90001,"ES导入数据异常"),
+    ES_CONNECT_FAIL(90002,"ES连接失败")
     ;
 
 
@@ -45,7 +60,7 @@ public enum EmBusinessError implements CommonError{
     private int errCode;
     private String errMsg;
 
-    private EmBusinessError(int errCode, String errMsg) {
+    EmBusinessError(int errCode, String errMsg) {
         this.errCode = errCode;
         this.errMsg = errMsg;
     }
