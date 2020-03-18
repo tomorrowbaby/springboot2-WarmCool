@@ -309,6 +309,8 @@
 				<executions>
 					<execution>
 						<id>Generate MyBatis Artifacts</id>
+						<!--<phase>package</phase>-->
+						<phase>deploy</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -343,10 +345,22 @@
 			</plugin>
 
 
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.wy.MallApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 

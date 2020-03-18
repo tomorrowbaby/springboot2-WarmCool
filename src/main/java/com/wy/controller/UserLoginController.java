@@ -8,6 +8,7 @@ import com.wy.service.MemberService;
 import com.wy.service.model.MemberModel;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.elasticsearch.common.recycler.Recycler;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -27,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 @Controller
 @ResponseBody
-@RequestMapping(value = "/login")
 public class UserLoginController extends BaseController{
 
 
@@ -92,6 +92,21 @@ public class UserLoginController extends BaseController{
         }
         return CommonReturnType.create("手机号或密码不正确","fail");
 
+    }
+
+
+    @RequestMapping(value = "/toAdmin",method = RequestMethod.GET)
+    public CommonReturnType toAdmin(){
+        return CommonReturnType.create("Admin被访问");
+    }
+
+    @RequestMapping("/toEmployee")
+    public CommonReturnType toEploy(){
+        return CommonReturnType.create("eploy被访问");
+    }
+    @RequestMapping("/toUser")
+    public CommonReturnType toUser(){
+        return CommonReturnType.create("User被访问");
     }
 
 }

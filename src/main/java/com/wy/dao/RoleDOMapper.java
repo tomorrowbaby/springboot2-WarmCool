@@ -4,6 +4,8 @@ import com.wy.dataobject.RoleDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface RoleDOMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,4 +22,6 @@ public interface RoleDOMapper {
 
     //查询名字
     RoleDO selectByName(@Param("name") String name);
+
+    List<RoleDO> selectList();
 }

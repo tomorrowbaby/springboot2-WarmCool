@@ -17,6 +17,13 @@
     from permission
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from permission
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from permission
     where id = #{id,jdbcType=INTEGER}

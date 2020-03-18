@@ -2,6 +2,9 @@ package com.wy.dao;
 
 import com.wy.dataobject.RolePermDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RolePermDOMapper {
@@ -16,4 +19,9 @@ public interface RolePermDOMapper {
     int updateByPrimaryKeySelective(RolePermDO record);
 
     int updateByPrimaryKey(RolePermDO record);
+
+    List<Integer> selectByRoleId(@Param("roleId")Integer roleId);
+
+    List<Integer> selectByPermissionId(@Param("permissionId")Integer permissionId);
+
 }

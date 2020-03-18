@@ -27,7 +27,6 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/member")
 @CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class MemberController extends BaseController{
 
     @Autowired
@@ -67,7 +66,6 @@ public class MemberController extends BaseController{
      */
     @RequestMapping(value = "/list" ,method = RequestMethod.GET)
     @ResponseBody
-    @PreAuthorize("hasAuthority('ADMIN')")
     public CommonReturnPageInfo getMemberList(Integer draw, //显示当前页数，默认为1
                                               Integer start,//分页开始值
                                               Integer length, //每页显示数量

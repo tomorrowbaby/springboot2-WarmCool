@@ -55,6 +55,9 @@ public class ContentServiceImpl implements ContentService {
             for (PanelContentDO panelContentDO:
                  panelContentDOList) {
                 ItemDO itemDO = itemDOMapper.selectByPrimaryKey(panelContentDO.getProductId());
+                if(itemDO == null) {
+                    break;
+                }
                 PanelContentModel panelContentModel = new PanelContentModel();
                 panelContentModel.setProductName(itemDO.getTitle());
                 panelContentModel.setSalePrice(itemDO.getPrice());

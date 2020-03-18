@@ -1,5 +1,6 @@
 package com.wy.common.config;
 
+import com.wy.common.filter.CustomFilterSecurityInterceptor;
 import com.wy.common.handler.CustomAuthenticationFailureHandler;
 import com.wy.common.handler.CustomAuthenticationSuccessHandler;
 import com.wy.common.handler.CustomLogoutSuccessHandler;
@@ -8,16 +9,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.web.cors.CorsUtils;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+
 
 /**
  * 描述：Security 配置类
@@ -38,6 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomLogoutSuccessHandler customLogoutSuccessHandler;
+
+    @Autowired
+    private CustomFilterSecurityInterceptor customFilterSecurityInterceptor;
 
 
     @Autowired
@@ -65,6 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authenticated()
                     .and()
                     .csrf().disable().cors()
+                    .and()
+                    .addFilterBefore(customFilterSecurityInterceptor, FilterSecurityInterceptor.class)
             ;
 
 

@@ -76,7 +76,7 @@ public class ItemCategoryController extends BaseController{
     /**
      * 商品分类信息删除
      */
-    @RequestMapping(value = "/del/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
     public CommonReturnType deleteItemCategory(@PathVariable("id") Long id) throws BusinessException {
         if (id == null) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
